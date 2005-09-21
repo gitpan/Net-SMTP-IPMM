@@ -8,7 +8,7 @@ use base 'Net::SMTP';
 # import CMD_* constants
 use Net::Cmd;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 sub ackrcpt {
     my ( $self, $command ) = @_;
@@ -153,22 +153,22 @@ Version 0.01
 
 =item new 
 
-  Constructor. Pass the hostname of the IronPort as the first parameter:
+Constructor. Pass the hostname of the IronPort as the first parameter:
 
     my $ipmm = Net::SMTP::IPMM->new( 'ironport.foo.com' );
 
-  For additional configuration options see the docs for L<Net::SMTP>.
+For additional configuration options see the docs for L<Net::SMTP>.
 
 =item ackrcpt( BOOL )
 
-  Turn RCPT acknowledgements on or off.  Off means less traffic and 
-  higher performance (which is probably why you bought an IronPort).
-  Pass any true value to turn RCPT acknowledgements on, false for off.
+Turn RCPT acknowledgements on or off.  Off means less traffic and 
+higher performance (which is probably why you bought an IronPort).
+Pass any true value to turn RCPT acknowledgements on, false for off.
 
 =item xmrg( ADDRESS )
  
-  This sends an XMRG FROM command (replacing MAIL FROM from regular SMTP.)
-  You must use this method to tell the IronPort that mail-merge data is coming.
+This sends an XMRG FROM command (replacing MAIL FROM from regular SMTP.)
+You must use this method to tell the IronPort that mail-merge data is coming.
 
     $ipmm->xmrg( 'me@mydomain.com' );
 
@@ -177,11 +177,11 @@ Version 0.01
             key   => value,
             ...  )
 
-  This sends an XDFN command. XDFN is used to send each recipient's data to 
-  the IronPort. PART_NUMBERS is a string containing a comma-separated list
-  of "parts" for the recipient. The key/value pairs will be substituted
-  into the message by the IronPort. Note that message parts are not 
-  zero-indexed (the first one is "1".)
+This sends an XDFN command. XDFN is used to send each recipient's data to 
+the IronPort. PART_NUMBERS is a string containing a comma-separated list
+of "parts" for the recipient. The key/value pairs will be substituted
+into the message by the IronPort. Note that message parts are not 
+zero-indexed (the first one is "1".)
 
     $ipmm->xdfn( PARTS => "1,2,5",
                  fname => 'Mike',
@@ -191,9 +191,9 @@ Version 0.01
 
 =item xprt( MESSAGE_PARTS )
 
-  This sends all the message parts to the IronPort and begins the mailing.
-  MESSAGE_PARTS is a list of strings containing the message parts with
-  the appropriate variables in them.
+This sends all the message parts to the IronPort and begins the mailing.
+MESSAGE_PARTS is a list of strings containing the message parts with
+the appropriate variables in them.
 
     my $part1 = "From: sender\@mydomain.org$CRLF" .
                 "To: &*TO;$CRLF" .
@@ -214,6 +214,7 @@ Thanks to Douglas Hunter for doing most of the work. :)
 =head1 AUTHORS
 
 Mike Friedman C<< <mfriedman@plusthree.com> >>
+
 Douglas Hunter, C<< <dug@plusthree.com> >>
 
 =head1 BUGS
