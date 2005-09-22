@@ -8,7 +8,7 @@ use base 'Net::SMTP';
 # import CMD_* constants
 use Net::Cmd;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub ackrcpt {
     my ( $self, $command ) = @_;
@@ -146,6 +146,14 @@ Version 0.01
     # send the parts.
     $self->xprt( $part1, $part2 );
 
+=head1 DESCRIPTION
+
+IronPort Mail Merge (IPMM) is a proprietary extension to SMTP used on IronPort's
+email
+server appliances. This module is a subclass of L<Net::SMTP> which impliments
+the IPMM extensions. All the Net::SMTP methods are inherrited by this module.
+See the documentation for L<Net::SMTP> for general usage examples. For more
+on IPMM, see the documentation that came with your IronPort appliance.
 
 =head1 METHODS
 
